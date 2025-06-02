@@ -23,28 +23,40 @@ export default function LoginScreen({ navigation }) {
     }
 
     return (
+        <>
         <View style={styles.container}>
-            <Text style={styles.title}> Login </Text>
-            <TextInput style={styles.input} placeholder="E-mail" onChangeText={setEmail} />
-            <TextInput style={styles.input} placeholder="Senha" onChangeText={setPassword} />
-            <Button title="Entrar" onPress={handleLogin} />
-            <Text style={styles.link} onPress={() => navigation.navigate('Cadastro')}> Criar Conta </Text>
+            <View style={styles.div}>
+                <Text style={styles.title}> Login </Text>
+                <TextInput style={styles.input} placeholder="E-mail" onChangeText={setEmail} />
+                <TextInput style={styles.input} placeholder="Senha" onChangeText={setPassword} />
+                <Button title="Entrar" onPress={handleLogin} />
+                <Text style={styles.link} onPress={() => navigation.navigate('Cadastro')}> Criar Conta </Text>
+            </View>
         </View>
+        </>
     )
 
 }
 
 const styles = StyleSheet.create({
+    div:{
+        backgroundColor:'#808080',
+        borderRadius:10
+        
+    },
     container: {
+        alignItems:'center',
         flex: 1,
         justifyContent: 'center',
-        padding: 20
+        padding: 20,  
     },
     input: {
         borderWidth: 1,
         marginBottom: 10,
         padding: 10,
-        borderRadius: 5
+        borderRadius: 5,
+        width:200,
+        margin:15
     },
     title: {
         fontSize: 24,
