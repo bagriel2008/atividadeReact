@@ -5,7 +5,8 @@ import {
     Button,
     Text,
     StyleSheet,
-    Alert
+    Alert,
+    TouchableOpacity
 } from 'react-native';
 import { login } from "../services/api";
 
@@ -29,8 +30,14 @@ export default function LoginScreen({ navigation }) {
                 <Text style={styles.title}> Login </Text>
                 <TextInput style={styles.input} placeholder="E-mail" onChangeText={setEmail} />
                 <TextInput style={styles.input} placeholder="Senha" onChangeText={setPassword} />
-                <Button title="Entrar" onPress={handleLogin} />
+
+                <TouchableOpacity style={styles.button} onPress={handleLogin}>
+                    <Text style={styles.buttonText}> Entrar</Text>
+
+                </TouchableOpacity>
                 <Text style={styles.link} onPress={() => navigation.navigate('Cadastro')}> Criar Conta </Text>
+                
+
             </View>
         </View>
         </>
@@ -44,6 +51,21 @@ const styles = StyleSheet.create({
         borderRadius:10
         
     },
+    button:{
+        display:'flex',
+        width:200,
+        height:40,
+        backgroundColor:'blue',
+        borderRadius:10,
+        alignItems:'center',
+        justifyContent:'center',
+        margin:20,
+        
+    },
+    buttonText:{
+        
+        color:'#ffff'
+    },
     container: {
         alignItems:'center',
         flex: 1,
@@ -56,7 +78,8 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 5,
         width:200,
-        margin:15
+        margin:15,
+        backgroundColor:'#ffff'
     },
     title: {
         fontSize: 24,

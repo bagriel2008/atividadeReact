@@ -41,20 +41,23 @@ export default function CadastroScreen({ navigation }) {
                 />
             ))}
             <Button title='Cadastrar' onPress={handleSubmit} />
+            
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
+        alignItems:'center',
         flex: 1,
         justifyContent: 'center',
-        padding: 20
+        padding: 20,  
     },
     input:{
         borderWidth: 1,
         marginBottom: 10,
         padding: 10,
         borderRadius: 5
-    }
+    },
+
 })

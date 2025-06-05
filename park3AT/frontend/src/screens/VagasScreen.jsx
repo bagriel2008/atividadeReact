@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { listarVagas, ocuparVaga, desocuparVaga } from "../services/api";
 
-export default function VagasScreen({ route }) {
+export default function VagasScreen({ route, navigation }) {
     const [vagas, setVagas] = useState([])
     //route chama o valor do usuário (variavel user) que veio junto com a rota
     const userId = route.params.user.id
@@ -35,27 +35,53 @@ export default function VagasScreen({ route }) {
     useEffect(() => { fetchVagas() }, [])
 
     const renderItem = ({ item }) => (
-        <View style={styles.card}>
-            <Text> Vaga #{item.id} - {item.preferencial_int ? 'Preferencial' : 'Comum'} </Text>
-            <Text> Disponível: {item.disponivel ? 'Sim' : 'Não'} </Text>
-            {item.disponivel ? (
-                <Button title="Ocupar" onPress={() => handleOcupar(item.id)} />
-            ) : (
-                <Button title="Desocupar" onPress={() => handleDesocupar(item.id)} />
-            )}
-        </View>
-    )
+        <>
+            <View style={styles.container}>
 
+                <View style={styles.card}>
+                    <Text> Vaga #{item.id} - {item.preferencial_int ? 'Preferencial' : 'Comum'} </Text>
+                    <Text> Disponível: {item.disponivel ? 'Sim' : 'Não'} </Text>
+                    {item.disponivel ? (
+                        <Button title="Ocupar" onPress={() => handleOcupar(item.id)} />
+                    ) : (
+                        <Button title="Desocupar" onPress={() => handleDesocupar(item.id)} />
+                    )}
+                </View>
+            </View>
+        </>
+    )
+    
     return (
+        <>
+        <Text style={styles.link} onPress={() => navigation.navigate('Editar')}> Editar usuário </Text>
         <FlatList
             data={vagas}
             keyExtractor={(item) => item.id.toString()}
             renderItem={renderItem}
             contentContainerStyle={{ padding: 20 }}
-        />
+            />
+        </>
     )
 }
 
 const styles = StyleSheet.create({
-    card: {padding:15, borderWidth:1, borderRadius:8, marginBottom:10}
+    card: {
+        padding: 15,
+        borderWidth: 1,
+        borderRadius: 8,
+        marginBottom: 10,
+        width: 700,
+
+    },
+    container: {
+        flex:1,
+        justifyContent: 'center',
+        alignItems: 'center'
+
+    },
+    link: {
+        marginTop: 20,
+        color: 'blue',
+        textAlign: 'center'
+    }
 })
