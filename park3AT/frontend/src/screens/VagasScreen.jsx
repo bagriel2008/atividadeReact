@@ -53,7 +53,7 @@ export default function VagasScreen({ route, navigation }) {
     
     return (
         <>
-        <Text style={styles.link} onPress={() => navigation.navigate('Editar')}> Editar usuário </Text>
+        <Text style={styles.link} onPress={() => navigation.navigate('Editar', {user:route.params.user})}> Editar usuário </Text>
         <FlatList
             data={vagas}
             keyExtractor={(item) => item.id.toString()}
